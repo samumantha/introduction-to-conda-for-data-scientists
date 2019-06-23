@@ -15,7 +15,11 @@
       </button>
 
       {% comment %} Select what logo to display. {% endcomment %}
-      {% if site.carpentry == "swc" %}
+      {% if site.carpentry == "kaust-core-labs" %}
+      <a href="{{ site.kaust_core_labs_site }}" class="pull-left">
+        <img class="navbar-logo" src="{{ relative_root_path }}{% link /assets/img/kaust-core-labs-logo.png %}" alt="KAUST Core Labs logo" />
+      </a>
+      {% elsif site.carpentry == "swc" %}
       <a href="{{ site.swc_site }}" class="pull-left">
         <img class="navbar-logo" src="{{ relative_root_path }}{% link /assets/img/swc-icon-blue.svg %}" alt="Software Carpentry logo" />
       </a>
