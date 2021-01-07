@@ -274,6 +274,80 @@ from the environment.
 > {: .solution}
 {: .challenge}
 
+
+> ## Optional exercise: 
+> 
+> If you are working on a project of your own, now is the time to create a conda environment for your project! 
+> If you do not (yet) have a project of your own you can use the (Python) project description below.
+> 
+> Project: The project aims at creating interactive visualizations based on data from a csv file in Python. 
+> In order to read the csv file and do some preprocessing, pandas (https://pandas.pydata.org/) is used. 
+> For the interactive visualization bokeh (https://docs.bokeh.org/en/latest/index.html) is chosen. 
+> 
+> Create a conda environment for the project. You can choose where you want to store the environment.
+> Make your environment shareable and reproducible.
+> What would you do, if a colleague provides you with old scripts for the preprocessing that depend on numpy version 1.9?
+>
+>
+> > ## Solution
+> > 
+> > 1. Create conda environment
+> > Here you got a few options:
+> > 1.1 Create an environment file with latest versions (that are available from Anaconda)
+> > ~~~
+> > name: interactive_viz_env
+> >
+> > dependencies:
+> >   - python=3.6
+> >   - pandas=1.2.0
+> >   - bokeh=2.2.3
+> > ~~~
+> > and then:
+> > 
+> > ~~~
+> > $ conda env create --file environment.yml
+> > ~~~
+> > {: .language-bash}
+> >
+> > Note that this way, all versions are chosen for you (latest), also the Python version.
+> > 
+> > 1.2 Create an empty environment and install packages into it
+> > 
+> > ~~~
+> > $ conda create --name interactive_viz_env python=3.6
+> > $ conda activate interactive_viz_env
+> > ~~~
+> > {: .language-bash}
+> >
+> > This creates an environment with Python 3.6 (you can also choose another) version and then activates it.
+> >
+> > ~~~
+> > $ conda install pandas=1.2.0
+> > $ conda install bokeh=2.2.3
+> > ~~~
+> > {: .language-bash}
+> > 
+> > Both 1.1 and 1.2 will create a conda environment with the requested packages in a way that they will work together.
+> > Check with `conda list` (from within the environment, ie after `conda activate`) which versions of packages have been installed.
+> > Now you can write code that uses these versions. When you are done, you may want to share that code with a colleague.
+> > In order to use your code or reproduce your results, your colleague will also need an environment.yml file to reproduce your software environment.
+> > The environment file from 1.1 would not be sufficient, as new versions may have come out since you created it and then the latest version 
+> > your colleague gets, is different from what you used.
+> > So, in this case it will be necessary to create an updated environment.yml with version numbers, which can for example be done like this 
+> > (from within the environment: 
+> > ~~~
+> > $ conda env export --from-history > environment.yml
+> > ~~~
+> > {: .language-bash}
+> > 
+> > ....
+> >
+> > Note that the latest pandas version depends on minimum numpy version 1.16, the latest bokeh on minimum numpy version 1.11.
+> > For the first part, this is not an issue, as conda will find the newest numpy version that is compatible with both.
+> {: .solution}
+{: .challenge}
+
+
 ## Making Jupyter aware of your Conda environments
 
 Both JupyterLab and Jupyter Notebooks automatically ensure that the standard IPython kernel is 
